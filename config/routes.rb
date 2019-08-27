@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :mod_events
+  resources :user_mods
   resources :follows
   resources :tweets
   resources :mods

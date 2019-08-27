@@ -1,0 +1,2 @@
+class UserModsController < ApplicationController
+end
