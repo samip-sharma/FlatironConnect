@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_27_141204) do
+ActiveRecord::Schema.define(version: 2019_08_27_183725) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -41,11 +41,14 @@ ActiveRecord::Schema.define(version: 2019_08_27_141204) do
   end
 
   create_table "mods", force: :cascade do |t|
-    t.integer "user_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_mods_on_user_id"
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tweets", force: :cascade do |t|
