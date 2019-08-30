@@ -12,7 +12,12 @@ class ApplicationController < ActionController::API
 
   # sending to frontend
   def auth_response_json(user)
-      { token: make_token(user.id), user_name: user.user_name, user_id: user.id, name: user.name }
+    if user.mod
+      mod_id=user.mod.id
+    else
+      mod_id=1
+    end
+      { token: make_token(user.id), user_name: user.user_name, user_id: user.id, name: user.name ,mod_id: mod_id}
   end
 
   def tell_user_to_go_away!
