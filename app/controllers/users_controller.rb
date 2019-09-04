@@ -18,9 +18,13 @@ class UsersController < ApplicationController
   def update
     user=User.find(params[:user_id])
     mod=Mod.find(params[:mod_id])
-    # byebug
     if !!user
-    user.mod=mod
+      if user.mod!=mod 
+        user.mod=mod
+        user.user_mod.accepted=false 
+        user.user_mod.save
+      end
+  
       if params[:name]!=""
         user.name=params[:name]
       end
@@ -40,6 +44,12 @@ class UsersController < ApplicationController
 
   def show
     render json: User.find(params[:id])
+  end
+
+  def workingToggle
+    user= User.find(params[:id])
+    user.update(working:!user.working)
+    render json: user
   end
 
   private

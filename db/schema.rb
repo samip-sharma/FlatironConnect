@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_145708) do
+ActiveRecord::Schema.define(version: 2019_09_02_210444) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 2019_09_01_145708) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.boolean "working", default: false
+    t.string "working_at", default: "Student"
   end
 
 end
