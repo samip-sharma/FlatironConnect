@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :two_users_messages, only: [:create]
+  resources :two_users_chats
   resources :tokens, only: [:create]
   resources :mod_events , only: [:show,:create]
   resources :user_mods ,only: [:show]
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   post "/createFollows", to: "follows#createFollows"
   post "/removeFollows", to: "follows#removeFollows"
   get "working/:id" , to: "users#workingToggle"
+  get "twoUsersChat/:sender_id/:receiver_id", to: "two_users_chats#getMessages"
 
   # mount ActionCable.server => '/cable'
   # get '/create-event/:user_id/:mod_id' ,to: "mod_events#createEvent"

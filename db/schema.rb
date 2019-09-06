@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_02_210444) do
+ActiveRecord::Schema.define(version: 2019_09_05_194622) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -58,6 +58,21 @@ ActiveRecord::Schema.define(version: 2019_09_02_210444) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tweets_on_user_id"
+  end
+
+  create_table "two_users_chats", force: :cascade do |t|
+    t.integer "follow_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follow_id"], name: "index_two_users_chats_on_follow_id"
+  end
+
+  create_table "two_users_messages", force: :cascade do |t|
+    t.integer "two_users_chat_id"
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["two_users_chat_id"], name: "index_two_users_messages_on_two_users_chat_id"
   end
 
   create_table "user_mods", force: :cascade do |t|
