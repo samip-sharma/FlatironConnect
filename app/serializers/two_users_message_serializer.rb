@@ -1,4 +1,4 @@
 class TwoUsersMessageSerializer < ActiveModel::Serializer
-  attributes :id, :text
-
+  attributes :id, :text, :sender
+  # belongs_to :user
 end

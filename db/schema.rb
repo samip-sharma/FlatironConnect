@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_013256) do
+ActiveRecord::Schema.define(version: 2019_09_09_200447) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_013256) do
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "sender"
     t.index ["two_users_chat_id"], name: "index_two_users_messages_on_two_users_chat_id"
   end
 
