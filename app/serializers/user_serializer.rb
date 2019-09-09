@@ -3,4 +3,6 @@ class UserSerializer < ActiveModel::Serializer
   has_many :tweets
   has_many :blogs
   has_one :user_mod
+  has_one :mod
+
 end

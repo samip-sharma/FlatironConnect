@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :global_messages, only: [:index, :create]
   resources :two_users_messages, only: [:create]
   resources :two_users_chats
   resources :tokens, only: [:create]
@@ -16,8 +17,7 @@ Rails.application.routes.draw do
   post "/removeFollows", to: "follows#removeFollows"
   get "working/:id" , to: "users#workingToggle"
   get "twoUsersChat/:sender_id/:receiver_id", to: "two_users_chats#getMessages"
-
-  # mount ActionCable.server => '/cable'
+  mount ActionCable.server => '/cable'
   # get '/create-event/:user_id/:mod_id' ,to: "mod_events#createEvent"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
