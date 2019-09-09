@@ -4,5 +4,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :blogs
   has_one :user_mod
   has_one :mod
-
+  has_one :image
 end

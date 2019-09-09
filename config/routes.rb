@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :mod_tweets, only: [:show, :create]
   resources :global_messages, only: [:index, :create]
   resources :two_users_messages, only: [:create]
   resources :two_users_chats
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
   resources :mods, only: [:index,:show,:create]
   resources :users, only: [:create,:index,:show,:update]
   resources :blogs, only: [:create]
+  get "/getAllImage", to: "users#getAllImage"
+  post "/changeProfilePic", to: "users#changeProfilePic"
   get "/pendingModUser" , to: "user_mods#pendingModUser"
   post "/acceptModUser" , to: "user_mods#acceptModUser"
   post "/rejectModUser", to: "user_mods#rejectModUser"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_06_140753) do
+ActiveRecord::Schema.define(version: 2019_09_09_013256) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -36,6 +36,12 @@ ActiveRecord::Schema.define(version: 2019_09_06_140753) do
     t.index ["user_id"], name: "index_global_messages_on_user_id"
   end
 
+  create_table "images", force: :cascade do |t|
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "mod_events", force: :cascade do |t|
     t.string "start"
     t.string "end"
@@ -47,6 +53,16 @@ ActiveRecord::Schema.define(version: 2019_09_06_140753) do
     t.boolean "allday", default: false
     t.index ["mod_id"], name: "index_mod_events_on_mod_id"
     t.index ["user_id"], name: "index_mod_events_on_user_id"
+  end
+
+  create_table "mod_tweets", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "mod_id"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mod_id"], name: "index_mod_tweets_on_mod_id"
+    t.index ["user_id"], name: "index_mod_tweets_on_user_id"
   end
 
   create_table "mods", force: :cascade do |t|
@@ -81,6 +97,15 @@ ActiveRecord::Schema.define(version: 2019_09_06_140753) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["two_users_chat_id"], name: "index_two_users_messages_on_two_users_chat_id"
+  end
+
+  create_table "user_images", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_id"], name: "index_user_images_on_image_id"
+    t.index ["user_id"], name: "index_user_images_on_user_id"
   end
 
   create_table "user_mods", force: :cascade do |t|

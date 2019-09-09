@@ -4,6 +4,10 @@ class User < ApplicationRecord
   has_one :user_mod
   has_one :mod , through: :user_mod
   has_many :mod_events
+  has_many :mod_tweets
+  has_one :user_image
+  has_one :image , through: :user_image
+
 
   has_many :following_users, foreign_key: :followee_id, class_name: 'Follow'
   has_many :followers, through: :following_users

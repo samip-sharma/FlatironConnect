@@ -41,6 +41,23 @@ class UsersController < ApplicationController
   end
 
 
+  def getAllImage
+    render json: Image.all
+  end
+
+  def changeProfilePic
+    # byebug
+    userImage=UserImage.find_by(user_id:params[:user_id])
+    if(!userImage)
+    userImage=UserImage.create(user_id:params[:user_id], image_id:params[:image_id])
+    render json: userImage.image
+    end
+    userImage.image_id=params[:image_id]
+    userImage.save
+    render json: userImage.image
+  end
+
+
 
   def show
     render json: User.find(params[:id])
