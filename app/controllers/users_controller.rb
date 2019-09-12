@@ -24,6 +24,10 @@ class UsersController < ApplicationController
         user.user_mod.accepted=false 
         user.user_mod.save
       end
+
+      if params[:working_at] !=""
+        user.working_at=params[:working_at]
+      end
   
       if params[:name]!=""
         user.name=params[:name]
