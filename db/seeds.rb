@@ -32,3 +32,5 @@ url=["https://cdn2.iconfinder.com/data/icons/picol-vector/32/avatar-256.png",
 ]
 
 url.each {|url| Image.create(url:url)}
+
+Mod.create(name:"Dont go json waterfalls ")

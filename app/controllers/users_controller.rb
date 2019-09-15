@@ -4,6 +4,10 @@ class UsersController < ApplicationController
 
     user = User.create(name:params[:name],user_name:params[:user_name],password:params[:password])
     if user.valid?
+      if user.id===1 
+        user.admin=true
+        user.save
+      end
         render json: auth_response_json(user) # see application_controller.rb
     else
         render json: { errors: user.errors.full_messages }

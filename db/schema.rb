@@ -10,14 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_200447) do
+ActiveRecord::Schema.define(version: 2019_09_15_184923) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.string "url"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_200447) do
 
   create_table "global_messages", force: :cascade do |t|
     t.string "text"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_global_messages_on_user_id"
@@ -46,8 +49,8 @@ ActiveRecord::Schema.define(version: 2019_09_09_200447) do
     t.string "start"
     t.string "end"
     t.string "title"
-    t.integer "mod_id"
-    t.integer "user_id"
+    t.bigint "mod_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "allday", default: false
@@ -56,8 +59,8 @@ ActiveRecord::Schema.define(version: 2019_09_09_200447) do
   end
 
   create_table "mod_tweets", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "mod_id"
+    t.bigint "user_id"
+    t.bigint "mod_id"
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,21 +81,21 @@ ActiveRecord::Schema.define(version: 2019_09_09_200447) do
 
   create_table "tweets", force: :cascade do |t|
     t.string "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
   create_table "two_users_chats", force: :cascade do |t|
-    t.integer "follow_id"
+    t.bigint "follow_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["follow_id"], name: "index_two_users_chats_on_follow_id"
   end
 
   create_table "two_users_messages", force: :cascade do |t|
-    t.integer "two_users_chat_id"
+    t.bigint "two_users_chat_id"
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -101,8 +104,8 @@ ActiveRecord::Schema.define(version: 2019_09_09_200447) do
   end
 
   create_table "user_images", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "image_id"
+    t.bigint "user_id"
+    t.bigint "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["image_id"], name: "index_user_images_on_image_id"
@@ -110,8 +113,8 @@ ActiveRecord::Schema.define(version: 2019_09_09_200447) do
   end
 
   create_table "user_mods", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "mod_id"
+    t.bigint "user_id"
+    t.bigint "mod_id"
     t.boolean "accepted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -131,4 +134,17 @@ ActiveRecord::Schema.define(version: 2019_09_09_200447) do
     t.string "working_at", default: "Student"
   end
 
+  add_foreign_key "blogs", "users"
+  add_foreign_key "global_messages", "users"
+  add_foreign_key "mod_events", "mods"
+  add_foreign_key "mod_events", "users"
+  add_foreign_key "mod_tweets", "mods"
+  add_foreign_key "mod_tweets", "users"
+  add_foreign_key "tweets", "users"
+  add_foreign_key "two_users_chats", "follows"
+  add_foreign_key "two_users_messages", "two_users_chats"
+  add_foreign_key "user_images", "images"
+  add_foreign_key "user_images", "users"
+  add_foreign_key "user_mods", "mods"
+  add_foreign_key "user_mods", "users"
 end
