@@ -4,9 +4,8 @@ class TweetsController < ApplicationController
   end
 
   def create
-    # byebug
-     tweet=Tweet.create(tweet_params)
-      render json: tweet
+    tweet=Tweet.create(tweet_params)
+    render json: tweet
   end
 
   private

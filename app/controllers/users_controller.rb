@@ -44,8 +44,7 @@ class UsersController < ApplicationController
       end
     end
     user.save
-  render json: user
-    # user
+    render json: user
   end
 
 
@@ -54,7 +53,6 @@ class UsersController < ApplicationController
   end
 
   def changeProfilePic
-    # byebug
     userImage=UserImage.find_by(user_id:params[:user_id])
     if(!userImage)
     userImage=UserImage.create(user_id:params[:user_id], image_id:params[:image_id])

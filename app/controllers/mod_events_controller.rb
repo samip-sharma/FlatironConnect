@@ -9,17 +9,8 @@ class ModEventsController < ApplicationController
   end
 
   def show
-    # byebug
     mod_event=Mod.find(params[:id]).mod_events
     render json: mod_event
   end
+  
 end
-
-
-
-# {
-#   //   'title': 'All Day Event very long title',
-#   //   'allDay': false,
-#   //   'start': "9/29/2019 10:36 GMT-0400 (Eastern Daylight Time)",
-#   //   'end': "9/29/2019 11:36 GMT-0400 (Eastern Daylight Time)"
-#   // }

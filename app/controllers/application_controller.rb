@@ -30,6 +30,8 @@ class ApplicationController < ActionController::API
       JWT.encode({ user_id: user_id }, "asdfhasdkjhfjkasdfjkhbas", 'HS256')
   end
 
+
+  
   # ENV["JWT_SECRET_KEY"]
 
   def decode_token(token_string)

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :mod_tweets, only: [:show, :create]
   resources :global_messages, only: [:index, :create]
   resources :two_users_messages, only: [:create]
-  resources :two_users_chats
   resources :tokens, only: [:create]
   resources :mod_events , only: [:show,:create]
   resources :user_mods ,only: [:show]
@@ -21,6 +20,6 @@ Rails.application.routes.draw do
   get "working/:id" , to: "users#workingToggle"
   get "twoUsersChat/:sender_id/:receiver_id", to: "two_users_chats#getMessages"
   mount ActionCable.server => '/cable'
-  # get '/create-event/:user_id/:mod_id' ,to: "mod_events#createEvent"
+  # resources :two_users_chats
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
